@@ -5,18 +5,18 @@
   
 
   
-  <title>With PengFei | Hexo</title>
+  <title>Mac 连 Linode 机器 SSH 总是超时断线 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Accompany with PengFeiToday I have a meaningful day with brother Pengfei, I want him to understand what I am worrying about and what I always expect him to be. I think there is a long long way to go t">
+  <meta name="description" content="就是 ssh 连上了 linode 的机器，但是走开做点什么事情后回来就发现连接断开了。今天终于解决了这个问题： 在Mac 里的 ~/.ssh/config 中配置就好, 只要增加以下内容: 123456Host linode	 User &amp;lt;username&amp;gt;     Hostname &amp;lt;linode address&amp;gt;     IdentityFile ~/.ssh/id_">
 <meta property="og:type" content="article">
-<meta property="og:title" content="With PengFei">
-<meta property="og:url" content="http://yoursite.com/2017/12/17/With-PengFei/index.html">
+<meta property="og:title" content="Mac 连 Linode 机器 SSH 总是超时断线">
+<meta property="og:url" content="http://yoursite.com/2017/12/20/Mac-连-Linode-机器-SSH-总是超时断线/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Accompany with PengFeiToday I have a meaningful day with brother Pengfei, I want him to understand what I am worrying about and what I always expect him to be. I think there is a long long way to go t">
-<meta property="og:updated_time" content="2017-12-17T15:16:32.424Z">
+<meta property="og:description" content="就是 ssh 连上了 linode 的机器，但是走开做点什么事情后回来就发现连接断开了。今天终于解决了这个问题： 在Mac 里的 ~/.ssh/config 中配置就好, 只要增加以下内容: 123456Host linode	 User &amp;lt;username&amp;gt;     Hostname &amp;lt;linode address&amp;gt;     IdentityFile ~/.ssh/id_">
+<meta property="og:updated_time" content="2017-12-19T21:51:58.399Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="With PengFei">
-<meta name="twitter:description" content="Accompany with PengFeiToday I have a meaningful day with brother Pengfei, I want him to understand what I am worrying about and what I always expect him to be. I think there is a long long way to go t">
+<meta name="twitter:title" content="Mac 连 Linode 机器 SSH 总是超时断线">
+<meta name="twitter:description" content="就是 ssh 连上了 linode 的机器，但是走开做点什么事情后回来就发现连接断开了。今天终于解决了这个问题： 在Mac 里的 ~/.ssh/config 中配置就好, 只要增加以下内容: 123456Host linode	 User &amp;lt;username&amp;gt;     Hostname &amp;lt;linode address&amp;gt;     IdentityFile ~/.ssh/id_">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -63,10 +63,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-With-PengFei" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Mac-连-Linode-机器-SSH-总是超时断线" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/12/17/With-PengFei/" class="article-date">
-  <time datetime="2017-12-17T07:01:09.000Z" itemprop="datePublished">2017-12-17</time>
+    <a href="/2017/12/20/Mac-连-Linode-机器-SSH-总是超时断线/" class="article-date">
+  <time datetime="2017-12-19T21:44:58.000Z" itemprop="datePublished">2017-12-20</time>
 </a>
     
   </div>
@@ -77,7 +77,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      With PengFei
+      Mac 连 Linode 机器 SSH 总是超时断线
     </h1>
   
 
@@ -85,13 +85,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Accompany-with-PengFei"><a href="#Accompany-with-PengFei" class="headerlink" title="Accompany with PengFei"></a>Accompany with PengFei</h1><p>Today I have a meaningful day with brother Pengfei, I want him to understand what I am worrying about and what I always expect him to be. I think there is a long long way to go to overcome the defaults derived from his family and have a splendid future, just like me or his sister Lan.</p>
-<p>I believe he can understand me, and  I am keen to see the day he has his wonderful life.</p>
+        <p>就是 ssh 连上了 linode 的机器，但是走开做点什么事情后回来就发现连接断开了。今天终于解决了这个问题：</p>
+<p>在Mac 里的 <code>~/.ssh/config</code> 中配置就好, 只要增加以下内容:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host linode</span><br><span class="line">	 User &lt;username&gt;</span><br><span class="line">     Hostname &lt;linode address&gt;</span><br><span class="line">     IdentityFile ~/.ssh/id_rsa #待解决的问题,用 ssh-key 验证</span><br><span class="line">	 Port 22</span><br><span class="line">	 ServerAliveInterval 30 # 解决断线: 没30秒发送请求保持连接活跃</span><br></pre></td></tr></table></figure>
+<p>还有一个问题至今没有得到解决: 在 linode 机器里添加了 public key, 但是在连接时仍然要输入密码. 已经删掉了 <code>~/.ssh/known_hosts</code> 的缓存</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/17/With-PengFei/" data-id="cjbe603k30001c5fy3hbltvav" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2017/12/20/Mac-连-Linode-机器-SSH-总是超时断线/" data-id="cjbe603jl0000c5fy96odohtx" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -100,19 +102,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/12/17/today/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/12/13/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/12/17/today/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title"></div>
     </a>
   
 </nav>
