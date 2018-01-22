@@ -61,6 +61,49 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CentOS-部署-Rails-应用到80端口" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/22/CentOS-部署-Rails-应用到80端口/" class="article-date">
+  <time datetime="2018-01-22T06:39:38.000Z" itemprop="datePublished">2018-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/22/CentOS-部署-Rails-应用到80端口/">CentOS 部署 Rails 应用到80端口</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CentOS 7 已经用firewall 替换了 iptable, 通过使用 firewall 将 rails 服务的3000端口映射到80端口:</p>
+<p>安装和启动服务:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yum install firewalld       #安装</span><br><span class="line">systemctl start firewalld         # 启动,</span><br><span class="line">systemctl enable firewalld        # 开机启动</span><br><span class="line">systemctl stop firewalld          # 关闭</span><br><span class="line">systemctl disable firewalld       # 取消开机启动</span><br></pre></td></tr></table></figure></p>
+<p>配置端口转发:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port=80/tcp --permanent  #开放80端口</span><br><span class="line">firewall-cmd --add-port=3000/tcp --permanent  #开放3000端口</span><br><span class="line">firewall-cmd --add-forward-port=port=3000:proto=tcp:toport=80 --permanent  #将80端口的流量转发至3000端口</span><br></pre></td></tr></table></figure></p>
+<p>重启服务以使配置生效:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<p>然后启动 rails 应用(deamon):</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup rails s &amp;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/22/CentOS-部署-Rails-应用到80端口/" data-id="cjcpugjdx0000gtthoo6e7jap" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Mac-连-Linode-机器-SSH-总是超时断线" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/12/20/Mac-连-Linode-机器-SSH-总是超时断线/" class="article-date">
@@ -91,7 +134,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/20/Mac-连-Linode-机器-SSH-总是超时断线/" data-id="cjbe603jl0000c5fy96odohtx" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2017/12/20/Mac-连-Linode-机器-SSH-总是超时断线/" data-id="cjcpugjef0002gtth349th35a" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -128,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/17/today/" data-id="cjbe603k70002c5fy8dunoo2e" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2017/12/17/today/" data-id="cjcpugjeh0004gtth6i3fpxsk" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -166,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/17/With-PengFei/" data-id="cjbe603k30001c5fy3hbltvav" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2017/12/17/With-PengFei/" data-id="cjcpugjeg0003gtthu1lk8p06" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -211,7 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/12/13/hello-world/" data-id="cjbe603k90003c5fyc3pafvf5" class="article-share-link">Teilen</a>
+      <a data-url="http://yoursite.com/2017/12/13/hello-world/" data-id="cjcpugje90001gtthyhzm1q6b" class="article-share-link">Teilen</a>
       
       
     </footer>
@@ -239,7 +282,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archiv</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
     </div>
   </div>
 
@@ -250,6 +293,10 @@
     <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/01/22/CentOS-部署-Rails-应用到80端口/">CentOS 部署 Rails 应用到80端口</a>
+          </li>
         
           <li>
             <a href="/2017/12/20/Mac-连-Linode-机器-SSH-总是超时断线/">Mac 连 Linode 机器 SSH 总是超时断线</a>
@@ -279,7 +326,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 John Doe<br>
+      &copy; 2018 John Doe<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
